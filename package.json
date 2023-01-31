@@ -1,0 +1,24 @@
+{
+  "name": "rc-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix ./"
+  },
+  "bin": {
+    "revenuecat": "./bin/index.js"
+  },
+  "author": "mcastany",
+  "license": "ISC",
+  "dependencies": {
+    "api": "^5.0.7",
+    "figlet": "^1.5.2",
+    "inquirer": "^8.2.5",
+    "yargs": "^17.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.33.0"
+  }
+}
