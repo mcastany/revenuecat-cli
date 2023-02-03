@@ -2,7 +2,7 @@
 const Yargs = require('yargs')
 const figlet = require('figlet')
 
-figlet('RevenueCat CLI', {
+figlet('RevenueCat', {
   font: 'slant',
   // horizontalLayout: 'full'
 }, function(err, data) {
@@ -11,7 +11,15 @@ figlet('RevenueCat CLI', {
     console.dir(err)
     return
   }
+
   console.log(data)
+  console.log(`%c
+                 /\\_/\\  (
+                ( ^.^ ) _)
+                  \\"/  (
+                ( | | )
+                (__d b__)
+  `,  'font-family: monospace')
 
   Yargs
     .scriptName('revenuecat')
@@ -36,14 +44,17 @@ figlet('RevenueCat CLI', {
     .command('packages', 'Manage packages', (yargs) => {
       return yargs.commandDir('../commands/packages')
     })
-    .help(true)
     .command({
       command: '*',
       handler() {
+        // Something for getting started
+        // check if there is a configuration, if not, just tell them to configure the SDK
         Yargs.showHelp()
       }
     })
     .demandCommand()
+    .strictCommands()
+    .help(true)
     .argv
 })
 

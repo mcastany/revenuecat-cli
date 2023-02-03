@@ -1,23 +1,23 @@
 const { withContext } = require('../../utils')
 const builder = {
-  'store_identifier': {
+  'display_name': {
     alias: 'si',
     type: 'string',
-    describe: 'Store product identifier',
+    describe: 'Entitlement display name',
     question: {
       type: 'string',
-      name: 'store_identifier',
-      message: 'Store product identifier?'
+      name: 'display_name',
+      message: 'Entitlement display name?'
     } 
   },
-  'app_id': {
+  'lookup_key': {
     alias: 'aid',
     type: 'string',
-    describe: 'Application Identifier?',
+    describe: 'Entitlement Identifier?',
     question: {
       type: 'string',
-      name: 'app_id',
-      message: 'Application Identifier?'
+      name: 'lookup_key',
+      message: 'Entitlement Identifier?'
     } 
   }
 }
@@ -27,9 +27,9 @@ exports.builder = builder
 
 exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) {
   try{
-    const product = await sdk.createProduct({
-      app_id: argv.app_id, 
-      store_identifier: argv.store_identifier
+    const product = await sdk.createEntitlement({
+      lookup_key: argv.lookup_key, 
+      display_name: argv.display_name
     }, {
       project_id: projectId 
     })

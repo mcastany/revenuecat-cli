@@ -16,7 +16,11 @@ exports.command = 'get [args]'
 exports.desc = 'Get a single product by identifier'
 exports.builder = builder
 
-exports.handler = withContext(async function({ sdk, projectId}, argv) {
-  const products = await sdk.getProduct({product_id: argv.product_id, project_id: projectId})
-  console.table([products.data])
+exports.handler = withContext(builder, async function({ sdk, projectId}, argv) {
+  try{
+    const products = await sdk.getProduct({product_id: argv.product_id, project_id: projectId})
+    console.table([products.data])
+  } catch(e){
+    console.log(e.data)
+  }
 })

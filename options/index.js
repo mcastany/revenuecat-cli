@@ -28,5 +28,25 @@ module.exports = {
       name: 'profile',
       message: 'Define a Friendly Name for your key'
     } 
-  }
+  },
+  default: {
+    type: 'boolean',
+    describe: 'Set profile as default',
+    question: {
+      type: 'confirm',
+      name: 'default',
+      default: true,
+      message: 'Do you want to set this as the default profile?'
+    } 
+  },
+  hostname: {
+    type: 'string',
+    describe: 'Base URL to use',
+    question: {
+      type: 'string',
+      name: 'hostname',
+      default: 'https://api.revenuecat.com/v2',
+      message: 'Change the base URL if you want to use something different?'
+    } 
+  },
 }

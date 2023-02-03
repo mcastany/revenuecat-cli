@@ -5,6 +5,10 @@ exports.desc = 'Get a list of products'
 exports.builder = {}
 
 exports.handler = withContext(async function({ sdk, projectId}) {
-  const products = await sdk.listProducts({limit: '20', project_id: projectId})
-  console.table(products.data.items)
+  try{
+    const products = await sdk.listProducts({limit: '20', project_id: projectId})
+    console.log(products.data.items)
+  }catch(e){
+    console.log(e.data)
+  }
 })

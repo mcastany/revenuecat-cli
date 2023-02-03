@@ -1,38 +1,46 @@
-const fs = require('fs')
-const path = require('path')
-const os = require('os')
+const { getSettingsContent } = require('./utils')
+const sdk = require('api')('@rcv2/v2.0#wt5e3a5lddfetqe')
 
 class RC {
   constructor() {
     throw new Error('Use Singleton.getInstance()')
   }
 
-  static getInstance(profile = 'default') {
+  static async getInstance(profile) {
+    if (!profile){
+      if (!RC.default){
+        const settings = await getSettingsContent()
+        const defaultProfile = settings.filter(d => d.default)[0]
+
+        if (!defaultProfile){
+          console.log('You can only have one default profile. Execute command revenuecat configure set-default')
+          return false
+        }
+
+        sdk.auth(defaultProfile['api-key'])
+        if (defaultProfile.hostname){
+          console.log('using server %s', defaultProfile.hostname)
+          sdk.server(defaultProfile.hostname, { foo: 'var'})
+        }
+        RC.default = { sdk, projectId: defaultProfile['project-id'] }
+      }
+
+      return RC.default
+    }
+
     if (!RC.instance || !RC.instance[profile]) {
       RC.instance = RC.instance || {}
-      const sdk = require('api')('@rcv2/v2.0#wt5e3a5lddfetqe')
-      
       // load profile and key
-      const file = path.join(os.homedir(), '.rc-admin')
-      const fileContent = fs.readFileSync(file)
-    
-      let jsonData = []
-      try{
-        jsonData = JSON.parse(fileContent)
-      } catch(e){
-        console.debug('error:', e)
-      }
+      const settings = await getSettingsContent()
 
-
-      let existingProfile = jsonData.filter(p => p.profile === profile)[0]
-      
-
-      if (!existingProfile && profile === 'default' && jsonData.length > 0){
-        existingProfile = jsonData[0]
-      }
+      let existingProfile = settings.filter(p => p.profile === profile)[0]
       
       if (!existingProfile){
         return false
+      }
+
+      if (existingProfile.hostname){
+        sdk.server(existingProfile.hostname)
       }
 
       sdk.auth(existingProfile['api-key'])
