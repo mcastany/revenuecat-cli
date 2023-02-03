@@ -19,6 +19,17 @@ const builder = {
       name: 'app_id',
       message: 'Application Identifier?'
     } 
+  },
+  'type': {
+    alias: 't',
+    choices: ['subscription', 'one_time'],
+    describe: 'Application Identifier?',
+    question: {
+      type: 'list',
+      name: 'type',
+      message: 'Application Identifier?',
+      choices: ['subscription', 'one_time']
+    } 
   }
 }
 exports.command = 'create [args]'
@@ -29,7 +40,8 @@ exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) 
   try{
     const product = await sdk.createProduct({
       app_id: argv.app_id, 
-      store_identifier: argv.store_identifier
+      store_identifier: argv.store_identifier,
+      type: argv.type
     }, {
       project_id: projectId 
     })
