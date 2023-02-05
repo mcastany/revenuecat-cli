@@ -47,12 +47,12 @@ exports.handler = withContext(builder, async function ({sdk, projectId}, argv) {
       display_name: argv.display_name,
     }
     
-    const product = await sdk.updateOffering(payload, {
+    const offering = await sdk.updateOffering(payload, {
       project_id: projectId,
       offering_id: argv.offering_id
     })
 
-    console.table([product.data])
+    console.table([offering.data])
   } catch (e) {
     console.error(e.data)
   }

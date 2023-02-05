@@ -54,12 +54,12 @@ exports.handler = withContext(builder, async function ({sdk, projectId}, argv) {
       position: argv.position,
     }, _.isUndefined)
     
-    const product = await sdk.createPackages(payload, {
+    const package = await sdk.createPackages(payload, {
       project_id: projectId,
       offering_id: argv.offering_id
     })
 
-    console.table([product.data])
+    console.table([package.data])
   } catch (e) {
     console.error(e.data)
   }

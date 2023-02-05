@@ -21,6 +21,6 @@ exports.desc = 'Get a single offering'
 exports.builder = builder
 
 exports.handler = withContext(builder, async function({ sdk, projectId}, argv) {
-  const products = await sdk.getOffering({offering_id: argv.offering_id, project_id: projectId})
-  console.table([products.data])
+  const offering = await sdk.getOffering({offering_id: argv.offering_id, project_id: projectId})
+  console.table([offering.data])
 })

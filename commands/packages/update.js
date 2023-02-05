@@ -43,12 +43,12 @@ exports.handler = withContext(builder, async function ({sdk, projectId}, argv) {
       display_name: argv.display_name,
     }
     
-    const product = await sdk.updatePackage(payload, {
+    const package = await sdk.updatePackage(payload, {
       project_id: projectId,
       package_id: argv.package_id
     })
 
-    console.table([product.data])
+    console.table([package.data])
   } catch (e) {
     console.error(e.data)
   }

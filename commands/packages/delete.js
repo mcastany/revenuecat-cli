@@ -21,6 +21,6 @@ exports.desc = 'Delete an package with its attached package'
 exports.builder = builder
 
 exports.handler = withContext(builder, async function({ sdk, projectId }, argv) {
-  await sdk.deletePackageFromOffering({product_id: argv.package_id, project_id: projectId})
+  await sdk.deletePackageFromOffering({package_id: argv.package_id, project_id: projectId})
   console.log('Package successfully deleted')
 })

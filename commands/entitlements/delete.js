@@ -21,6 +21,6 @@ exports.desc = 'Delete an entitlement'
 exports.builder = builder
 
 exports.handler = withContext(builder, async function({ sdk, projectId }, argv) {
-  await sdk.deleteProduct({product_id: argv.entitlement_id, project_id: projectId})
+  await sdk.deleteEntitlement({entitlement_id: argv.entitlement_id, project_id: projectId})
   console.log('Entitlement successfully deleted')
 })

@@ -7,7 +7,7 @@ exports.builder = {}
 exports.handler = withContext(async function({ sdk, projectId}) {
   try{
     const products = await sdk.listProducts({limit: '20', project_id: projectId})
-    console.log(products.data.items)
+    console.table(products.data.items)
   }catch(e){
     console.log(e.data)
   }

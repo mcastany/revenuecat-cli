@@ -18,6 +18,6 @@ exports.desc = 'Get a single package'
 exports.builder = builder
 
 exports.handler = withContext(builder, async function({ sdk, projectId}, argv) {
-  const products = await sdk.getPackage({package_id: argv.package_id, project_id: projectId})
-  console.table([products.data])
+  const package = await sdk.getPackage({package_id: argv.package_id, project_id: projectId})
+  console.table([package.data])
 })
