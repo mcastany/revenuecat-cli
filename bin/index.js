@@ -55,6 +55,9 @@ figlet('RevenueCat', {
     .command('offerings', 'Manage offerings', (yargs) => {
       return yargs.commandDir('../commands/offerings')
     })
+    .command('subscriptions', 'Manage subscriptions', (yargs) => {
+      return yargs.commandDir('../commands/subscriptions')
+    })
     .command('packages', 'Manage packages', (yargs) => {
       return yargs.commandDir('../commands/packages')
     })
