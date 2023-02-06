@@ -40,6 +40,12 @@ figlet('RevenueCat', {
     .command('configure', 'Configure API keys', (yargs) => {
       return yargs.commandDir('../commands/configure')
     })
+    .command('dashboard', 'Configure API keys', (yargs) => {
+      return yargs.commandDir('../commands/dashboard')
+    })
+    .command('customers', 'Manage customers', (yargs) => {
+      return yargs.commandDir('../commands/customers')
+    })
     .command('products', 'Manage products', (yargs) => {
       return yargs.commandDir('../commands/products')
     })
