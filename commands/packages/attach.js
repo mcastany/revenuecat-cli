@@ -2,7 +2,7 @@ const { withContext } = require('../../utils')
 
 const builder = {
   'package_id': require('./options/package_id'),
-  'product_ids': require('./options/product_ids')
+  'product_ids': require('../../options/product_ids')
 }
 
 exports.command = 'attach'

@@ -1,20 +1,7 @@
 const { withContext } = require('../../utils')
 
 const builder = {
-  'offering_id': {
-    alias: 'oid',
-    type: 'string',
-    describe: 'RevenueCat Offering ID',
-    question: {
-      type: 'list',
-      name: 'offering_id',
-      message: 'Offering ID',
-      getChoices: async (sdk, projectId ) => {
-        const { data} = await sdk.listOfferings({limit: '20', project_id: projectId })
-        return data.items.map(o => { return { value: o.id, name: o.lookup_key } })
-      }
-    } 
-  }
+  'offering_id': require('../../options/offering_id')
 }
 
 exports.command = 'list'

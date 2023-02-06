@@ -1,19 +1,6 @@
 const { withContext} = require('../../utils')
 const builder = {
-  'entitlement_id': {
-    alias: 'eid',
-    type: 'string',
-    describe: 'Entitlement identifier',
-    question: {
-      type: 'list',
-      name: 'entitlement_id',
-      message: 'What\'s the RC Entitlement identifier?',
-      getChoices: async (sdk, projectId ) => {
-        const entitlements = await sdk.listEntitlements({limit: '20', project_id: projectId })
-        return entitlements.data.items.map(o => { return { value: o.id, name: o.lookup_key } })
-      }
-    } 
-  }
+  'entitlement_id': require('../../options/entitlement_id'),
 }
 
 exports.command = 'delete'

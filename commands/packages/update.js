@@ -1,26 +1,8 @@
 const { withContext } = require('../../utils')
 const builder = {
   'package_id': require('./options/package_id'),
-  'position': {
-    alias: 'c',
-    type: 'string',
-    describe: 'Offering Lookup key',
-    question: {
-      type: 'string',
-      name: 'is_current',
-      message: 'Offering Lookup key?'
-    }
-  },
-  'display_name': {
-    alias: 'si',
-    type: 'string',
-    describe: 'Offering display name',
-    question: {
-      type: 'string',
-      name: 'display_name',
-      message: 'Offering display name?'
-    }
-  }
+  'display_name': require('./options/display_name'),
+  'position': require('./options/position')
 }
 
 exports.command = 'update'

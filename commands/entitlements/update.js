@@ -1,32 +1,7 @@
 const { withContext } = require('../../utils')
 const builder = {
-  'entitlement_id': {
-    alias: 'eid',
-    type: 'string',
-    describe: 'Entitlement ID',
-    question: {
-      type: 'list',
-      name: 'entitlement_id',
-      message: 'What\'s the Entitlement ID?',
-      getChoices: async (sdk, projectId ) => {
-        const { data} = await sdk.listEntitlements({limit: '20', project_id: projectId })
-        return data.items.map(o => { return { 
-          value: o.id, 
-          name: `${o.lookup_key} (${o.id})`
-        }})
-      }
-    }
-  },
-  'display_name': {
-    alias: 'si',
-    type: 'string',
-    describe: 'Entitlement display name',
-    question: {
-      type: 'string',
-      name: 'display_name',
-      message: 'Entitlement display name?'
-    }
-  }
+  'entitlement_id': require('../../options/entitlement_id'),
+  'display_name': require('./options/display_name')
 }
 
 exports.command = 'update'

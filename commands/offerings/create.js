@@ -10,16 +10,7 @@ const builder = {
       message: 'Offering Lookup key?'
     }
   },
-  'display_name': {
-    alias: 'si',
-    type: 'string',
-    describe: 'Offering display name',
-    question: {
-      type: 'string',
-      name: 'display_name',
-      message: 'Offering display name?'
-    }
-  }
+  'display_name': require('./options/display_name')
 }
 
 exports.command = 'create'

@@ -1,7 +1,12 @@
-const sharedOptions = require('../../options')
 const { pick, getSettingsContent, storeSettingsContent } = require('../../utils')
 const inquirer = require('inquirer')
-const builder = pick(sharedOptions, 'api-key', 'project-id', 'profile', 'default', 'server')
+const builder = {
+  'api-key': require('./options/api_key'),
+  'profile': require('../../options/profile'),
+  'project-id': require('./options/project_id'),
+  'server': require('./options/server'),
+  'default': require('./options/default')
+}
 
 exports.command = 'add-key'
 exports.desc = ''

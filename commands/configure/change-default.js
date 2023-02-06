@@ -1,16 +1,7 @@
 const { getSettingsContent, storeSettingsContent } = require('../../utils')
 const inquirer = require('inquirer')
 const builder = {
-  profile: {
-    alias: 'p',
-    type: 'string',
-    describe: 'Profile',
-    question: {
-      type: 'list',
-      name: 'profile',
-      message: 'What profile do you want to use as default?'
-    } 
-  }
+  profile: require('../../options/profile')
 }
 
 exports.command = 'default'
