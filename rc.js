@@ -21,7 +21,6 @@ class RC {
 
         sdk.auth(defaultProfile['api-key'])
         if (defaultProfile.hostname){
-          console.log('using server %s', defaultProfile.hostname)
           sdk.server(defaultProfile.hostname, { foo: 'var'})
         }
         RC.default = { sdk, projectId: defaultProfile['project-id'] }
