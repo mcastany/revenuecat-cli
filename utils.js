@@ -69,6 +69,7 @@ function withContext(positional, builder, fn) {
     }
 
     _.merge(argv, answers)
+
     try{
       await fn({ 
         sdk: instance.sdk,
@@ -79,7 +80,12 @@ function withContext(positional, builder, fn) {
             console.log(data)
             return
           }
-          console.table(data)
+
+          if (argv.json){
+            console.log(data)
+          } else {
+            console.table(data)
+          }
         }
       }, argv)
     } catch(e){

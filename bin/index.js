@@ -29,6 +29,10 @@ figlet('RevenueCat', {
       global: true,
       description: 'When multiple accounts configured, define which one to use'
     })
+    .option('json', {
+      global: true,
+      description: 'Print lists as JSON instead of table'
+    })
     .command('configure', 'Configure API keys', (yargs) => {
       return yargs.commandDir('../commands/configure')
     })
