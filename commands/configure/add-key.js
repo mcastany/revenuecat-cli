@@ -3,7 +3,7 @@ const { pick, getSettingsContent, storeSettingsContent } = require('../../utils'
 const inquirer = require('inquirer')
 const builder = pick(sharedOptions, 'api-key', 'project-id', 'profile', 'default', 'server')
 
-exports.command = 'login'
+exports.command = 'add-key'
 exports.desc = ''
 exports.builder = builder
 

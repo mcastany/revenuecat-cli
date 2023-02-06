@@ -1,6 +1,6 @@
 const { getSettingsContent } = require('../../utils')
 
-exports.command = 'list'
+exports.command = 'list-keys'
 exports.desc = ''
 exports.builder = {}
 

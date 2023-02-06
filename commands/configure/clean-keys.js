@@ -1,6 +1,6 @@
 const { storeSettingsContent } = require('../../utils')
 
-exports.command = 'clean'
+exports.command = 'clean-keys'
 exports.desc = ''
 exports.builder = {}
 
