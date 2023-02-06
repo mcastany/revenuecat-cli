@@ -1,15 +1,6 @@
 const { withContext } = require('../../utils')
 const builder = {
-  'package_id': {
-    alias: 'eid',
-    type: 'string',
-    describe: 'Package identifier',
-    question: {
-      type: 'string',
-      name: 'entitlement_id',
-      message: 'What\'s the RC Package ID?'
-    } 
-  }
+  'package_id': require('./options/package_id'),
 }
 
 exports.command = 'list-products'

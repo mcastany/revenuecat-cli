@@ -22,7 +22,7 @@ const builder = {
   }
 }
 
-exports.command = 'create [args]'
+exports.command = 'create'
 exports.desc = 'Create an offering'
 exports.builder = builder
 

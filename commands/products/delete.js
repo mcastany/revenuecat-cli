@@ -16,7 +16,7 @@ const builder = {
   }
 }
 
-exports.command = 'delete [args]'
+exports.command = 'delete'
 exports.desc = 'Delete a product'
 exports.builder = builder
 

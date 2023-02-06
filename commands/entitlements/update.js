@@ -29,7 +29,7 @@ const builder = {
   }
 }
 
-exports.command = 'update [args]'
+exports.command = 'update'
 exports.desc = 'Update an entitlement'
 exports.builder = builder
 

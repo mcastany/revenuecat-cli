@@ -1,6 +1,6 @@
 const { withContext } = require('../../utils')
 
-exports.command = 'get [id]'
+exports.command = 'get'
 exports.desc = 'Get a single offering'
 exports.builder = {}
 

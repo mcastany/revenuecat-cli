@@ -32,7 +32,7 @@ const builder = {
     } 
   }
 }
-exports.command = 'create [args]'
+exports.command = 'create'
 exports.desc = 'Create a product'
 exports.builder = builder
 

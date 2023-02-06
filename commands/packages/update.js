@@ -1,15 +1,6 @@
 const { withContext } = require('../../utils')
 const builder = {
-  'package_id': {
-    alias: 'pid',
-    type: 'string',
-    describe: 'Package ID',
-    question: {
-      type: 'string',
-      name: 'package_id',
-      message: 'What\'s the RC Package?'
-    }
-  },
+  'package_id': require('./options/package_id'),
   'position': {
     alias: 'c',
     type: 'string',
@@ -32,7 +23,7 @@ const builder = {
   }
 }
 
-exports.command = 'update [args]'
+exports.command = 'update'
 exports.desc = 'Update an offering'
 exports.builder = builder
 

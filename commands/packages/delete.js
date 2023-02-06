@@ -16,7 +16,7 @@ const builder = {
   }
 }
 
-exports.command = 'delete [args]'
+exports.command = 'delete'
 exports.desc = 'Delete an package with its attached package'
 exports.builder = builder
 

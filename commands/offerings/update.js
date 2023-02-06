@@ -36,7 +36,7 @@ const builder = {
   }
 }
 
-exports.command = 'update [args]'
+exports.command = 'update'
 exports.desc = 'Update an offering'
 exports.builder = builder
 

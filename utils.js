@@ -47,8 +47,14 @@ function withContext(positional, builder, fn) {
     const input = pick(argv, ...properties)
     
     for (var key in input){
-      if (!argv[key] && builder[key].question) {
-        missing.push(builder[key].question)
+      if (!argv[key]){
+        if(builder[key].question) {
+          missing.push(builder[key].question)
+        }
+        
+        if(builder[key].questions) {
+          missing.push(...builder[key].questions)
+        }
       }
     }
 

@@ -21,7 +21,7 @@ const builder = {
     } 
   }
 }
-exports.command = 'create [args]'
+exports.command = 'create'
 exports.desc = 'Create an entitlement'
 exports.builder = builder
 
