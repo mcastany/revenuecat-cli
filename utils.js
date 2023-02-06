@@ -7,6 +7,7 @@ const inquirer = require('inquirer')
 const sdk = require('api')('@rcdev/v1.0#hf33ldocnids')
 const { printTable } = require('console-table-printer')
 const flatten = require('flat')
+const util = require('util')
 const RC = {}
 
 function pick(obj, ...props) {
@@ -100,7 +101,7 @@ function withContext(positional, builder, fn) {
           }
 
           if (argv.json){
-            console.log(data)
+            console.log(util.inspect(data, {showHidden: false, depth: null, colors: true}))
           } else {
             printTable(data.map(flatten))
           }
