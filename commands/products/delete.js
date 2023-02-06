@@ -20,7 +20,7 @@ exports.command = 'delete [args]'
 exports.desc = 'Delete a product'
 exports.builder = builder
 
-exports.handler = withContext(builder, async function({ sdk, projectId }, argv) {
+exports.handler = withContext(builder, async function({ sdk, projectId, log }, argv) {
   await sdk.deleteProduct({product_id: argv.product_id, project_id: projectId})
-  console.log('Product successfully deleted')
+  log('Product successfully deleted')
 })

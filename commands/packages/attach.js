@@ -34,7 +34,7 @@ exports.command = 'attach'
 exports.desc = ''
 exports.builder = builder
 
-exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) {
+exports.handler = withContext(builder, async function ({ sdk, projectId, log}, argv) {
   await sdk.attachProductsToPackage({
     product_ids: argv.product_ids
   },{
@@ -42,5 +42,5 @@ exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) 
     package_id: argv.package_id
   })
 
-  console.table(`successfully attached ${argv.product_ids.length} products`)
+  log(`successfully attached ${argv.product_ids.length} products`)
 })

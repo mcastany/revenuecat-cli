@@ -16,12 +16,12 @@ exports.command = 'list-products'
 exports.desc = ''
 exports.builder = builder
 
-exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) {
+exports.handler = withContext(builder, async function ({ sdk, projectId, log}, argv) {
   const { data: products} = await sdk.getProductsFromPackage({
     limit: '20', 
     project_id: projectId,
     entitlement_id: argv.package_id
   })
 
-  console.table(products.items)
+  log(products.items)
 })

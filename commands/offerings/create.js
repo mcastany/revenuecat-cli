@@ -26,19 +26,15 @@ exports.command = 'create [args]'
 exports.desc = 'Create an offering'
 exports.builder = builder
 
-exports.handler = withContext(builder, async function ({sdk, projectId}, argv) {
-  try {
-    const payload = {
-      lookup_key: argv.lookup_key,
-      display_name: argv.display_name,
-    }
-    
-    const product = await sdk.createOffering(payload, {
-      project_id: projectId
-    })
-
-    console.table([product.data])
-  } catch (e) {
-    console.error(e.data)
+exports.handler = withContext(builder, async function ({ sdk, projectId, log }, argv) {
+  const payload = {
+    lookup_key: argv.lookup_key,
+    display_name: argv.display_name,
   }
+  
+  const product = await sdk.createOffering(payload, {
+    project_id: projectId
+  })
+
+  log([product.data])
 })

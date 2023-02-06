@@ -37,19 +37,15 @@ exports.desc = 'Update an offering'
 exports.builder = builder
 
 exports.handler = withContext(builder, async function ({sdk, projectId}, argv) {
-  try {
-    const payload = {
-      position: argv.position,
-      display_name: argv.display_name,
-    }
-    
-    const product = await sdk.updatePackage(payload, {
-      project_id: projectId,
-      package_id: argv.package_id
-    })
-
-    console.table([product.data])
-  } catch (e) {
-    console.error(e.data)
+  const payload = {
+    position: argv.position,
+    display_name: argv.display_name,
   }
+  
+  const product = await sdk.updatePackage(payload, {
+    project_id: projectId,
+    package_id: argv.package_id
+  })
+
+  console.table([product.data])
 })

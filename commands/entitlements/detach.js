@@ -41,9 +41,9 @@ exports.command = 'detach'
 exports.desc = ''
 exports.builder = builder
 
-exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) {
+exports.handler = withContext(builder, async function ({ sdk, projectId, log }, argv) {
   if (argv.product_ids.length === 0){
-    console.log('select at least one product to detach to the entitlement')
+    log('select at least one product to detach to the entitlement')
     return
   }
 
@@ -54,5 +54,5 @@ exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) 
     project_id: projectId
   })
 
-  console.table(`successfully detached ${argv.product_ids.length} products`)
+  log(`successfully detached ${argv.product_ids.length} products`)
 })

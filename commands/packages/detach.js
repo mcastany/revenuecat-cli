@@ -33,7 +33,7 @@ exports.command = 'detach'
 exports.desc = ''
 exports.builder = builder
 
-exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) {
+exports.handler = withContext(builder, async function ({ sdk, projectId, log }, argv) {
   await sdk.detachProductsFromPackage({
     product_ids: argv.product_ids
   },{
@@ -41,5 +41,5 @@ exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) 
     package_id: argv.package_id
   })
 
-  console.table(`successfully detached ${argv.product_ids.length} products`)
+  log(`successfully detached ${argv.product_ids.length} products`)
 })

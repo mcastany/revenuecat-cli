@@ -37,9 +37,9 @@ exports.command = 'attach'
 exports.desc = ''
 exports.builder = builder
 
-exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) {
+exports.handler = withContext(builder, async function ({ sdk, projectId, log }, argv) {
   if (argv.product_ids.length === 0){
-    console.log('select at least one product to attach to the entitlement')
+    log('select at least one product to attach to the entitlement')
     return
   }
 
@@ -50,5 +50,5 @@ exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) 
     project_id: projectId
   })
 
-  console.table(`successfully attached ${argv.product_ids.length} products`)
+  log(`successfully attached ${argv.product_ids.length} products`)
 })

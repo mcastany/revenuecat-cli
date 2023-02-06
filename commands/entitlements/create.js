@@ -25,17 +25,13 @@ exports.command = 'create [args]'
 exports.desc = 'Create a product'
 exports.builder = builder
 
-exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) {
-  try{
-    const product = await sdk.createEntitlement({
-      lookup_key: argv.lookup_key, 
-      display_name: argv.display_name
-    }, {
-      project_id: projectId 
-    })
+exports.handler = withContext(builder, async function ({ sdk, projectId, log }, argv) {
+  const product = await sdk.createEntitlement({
+    lookup_key: argv.lookup_key, 
+    display_name: argv.display_name
+  }, {
+    project_id: projectId 
+  })
 
-    console.table([product.data])    
-  } catch(e){
-    console.error(e.data)
-  }
+  log([product.data])    
 })

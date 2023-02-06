@@ -4,7 +4,7 @@ exports.command = 'list'
 exports.desc = ''
 exports.builder = {}
 
-exports.handler = withContext(async function ({ sdk, projectId}) {
+exports.handler = withContext({}, async function ({ sdk, projectId, log}) {
   const products = await sdk.listEntitlements({limit: '20', project_id: projectId})
-  console.table(products.data.items)
+  log(products.data.items)
 })

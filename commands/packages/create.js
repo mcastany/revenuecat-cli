@@ -46,21 +46,17 @@ exports.command = 'create [args]'
 exports.desc = 'Create a package'
 exports.builder = builder
 
-exports.handler = withContext(builder, async function ({sdk, projectId}, argv) {
-  try {
-    const payload = _.omitBy({
-      lookup_key: argv.lookup_key,
-      display_name: argv.display_name,
-      position: argv.position,
-    }, _.isUndefined)
-    
-    const product = await sdk.createPackages(payload, {
-      project_id: projectId,
-      offering_id: argv.offering_id
-    })
+exports.handler = withContext(builder, async function ({sdk, projectId, log}, argv) {
+  const payload = _.omitBy({
+    lookup_key: argv.lookup_key,
+    display_name: argv.display_name,
+    position: argv.position,
+  }, _.isUndefined)
+  
+  const product = await sdk.createPackages(payload, {
+    project_id: projectId,
+    offering_id: argv.offering_id
+  })
 
-    console.table([product.data])
-  } catch (e) {
-    console.error(e.data)
-  }
+  log([product.data])
 })

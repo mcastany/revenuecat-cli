@@ -33,19 +33,15 @@ exports.command = 'update [args]'
 exports.desc = 'Update an entitlement'
 exports.builder = builder
 
-exports.handler = withContext(builder, async function ({sdk, projectId}, argv) {
-  try {
-    const payload = {
-      display_name: argv.display_name,
-    }
-    
-    const product = await sdk.updateEntitlement(payload, {
-      project_id: projectId,
-      offering_id: argv.offering_id
-    })
-
-    console.table([product.data])
-  } catch (e) {
-    console.error(e.data)
+exports.handler = withContext(builder, async function ({ sdk, projectId, log }, argv) {
+  const payload = {
+    display_name: argv.display_name,
   }
+  
+  const product = await sdk.updateEntitlement(payload, {
+    project_id: projectId,
+    offering_id: argv.offering_id
+  })
+
+  log([product.data])
 })

@@ -14,7 +14,7 @@ function pick(obj, ...props) {
   }, {})
 }
 
-function withContext(builder, fn) {
+function withContext(positional, builder, fn) {
   return async (argv) => {
     const instance = await getInstance(argv.profile)
 
@@ -28,7 +28,15 @@ function withContext(builder, fn) {
 
     if(typeof builder === 'function'){
       fn = builder
-      builder = {}
+      builder = positional
+      positional = []
+    }
+
+    const missingPos = positional.filter(p => !argv[p])
+
+    if (missingPos.length > 0){
+      console.log('Argument %s is required', missingPos[0])
+      return
     }
 
     const properties = Object.keys(builder)
@@ -65,7 +73,14 @@ function withContext(builder, fn) {
       await fn({ 
         sdk: instance.sdk,
         profile: instance.profile,
-        projectId: instance.projectId
+        projectId: instance.projectId,
+        log: (data) => {
+          if (typeof data === 'string'){
+            console.log(data)
+            return
+          }
+          console.table(data)
+        }
       }, argv)
     } catch(e){
       console.log(e.data || e.message || e)

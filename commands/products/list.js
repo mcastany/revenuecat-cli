@@ -4,11 +4,7 @@ exports.command = 'list'
 exports.desc = 'Get a list of products'
 exports.builder = {}
 
-exports.handler = withContext(async function({ sdk, projectId}) {
-  try{
-    const products = await sdk.listProducts({limit: '20', project_id: projectId})
-    console.log(products.data.items)
-  }catch(e){
-    console.log(e.data)
-  }
+exports.handler = withContext({}, async function({ sdk, projectId, log}) {
+  const products = await sdk.listProducts({limit: '20', project_id: projectId})
+  log(products.data.items)
 })
