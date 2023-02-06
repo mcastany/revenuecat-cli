@@ -22,7 +22,7 @@ const builder = {
   }
 }
 exports.command = 'create [args]'
-exports.desc = 'Create a product'
+exports.desc = 'Create an entitlement'
 exports.builder = builder
 
 exports.handler = withContext(builder, async function ({ sdk, projectId, log }, argv) {

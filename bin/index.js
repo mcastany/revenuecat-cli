@@ -33,6 +33,10 @@ figlet('RevenueCat', {
       global: true,
       description: 'Print lists as JSON instead of table'
     })
+    .option('dates', {
+      global: true,
+      description: 'Transform dates into readable dates'
+    })
     .command('configure', 'Configure API keys', (yargs) => {
       return yargs.commandDir('../commands/configure')
     })

@@ -5,6 +5,6 @@ exports.desc = ''
 exports.builder = {}
 
 exports.handler = withContext({}, async function ({ sdk, projectId}) {
-  const { data: products} = await sdk.listOfferings({limit: '20', project_id: projectId})
-  console.table(products.items)
+  const { data } = await sdk.listOfferings({limit: '20', project_id: projectId})
+  console.table(data.items)
 })

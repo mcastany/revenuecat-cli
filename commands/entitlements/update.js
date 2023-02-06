@@ -1,7 +1,7 @@
 const { withContext } = require('../../utils')
 const builder = {
   'entitlement_id': {
-    alias: 'oid',
+    alias: 'eid',
     type: 'string',
     describe: 'Entitlement ID',
     question: {
@@ -38,10 +38,10 @@ exports.handler = withContext(builder, async function ({ sdk, projectId, log }, 
     display_name: argv.display_name,
   }
   
-  const product = await sdk.updateEntitlement(payload, {
+  const { data } = await sdk.updateEntitlement(payload, {
     project_id: projectId,
     offering_id: argv.offering_id
   })
 
-  log([product.data])
+  log([data])
 })

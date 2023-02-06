@@ -53,10 +53,10 @@ exports.handler = withContext(builder, async function ({sdk, projectId, log}, ar
     position: argv.position,
   }, _.isUndefined)
   
-  const product = await sdk.createPackages(payload, {
+  const { data } = await sdk.createPackages(payload, {
     project_id: projectId,
     offering_id: argv.offering_id
   })
 
-  log([product.data])
+  log([data])
 })

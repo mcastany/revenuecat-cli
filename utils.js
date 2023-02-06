@@ -5,6 +5,8 @@ const fsPromise = fs.promises
 const _ = require('lodash')
 const inquirer = require('inquirer')
 const sdk = require('api')('@rcdev/v1.0#hf33ldocnids')
+const { printTable } = require('console-table-printer')
+const flatten = require('flat')
 const RC = {}
 
 function pick(obj, ...props) {
@@ -81,10 +83,26 @@ function withContext(positional, builder, fn) {
             return
           }
 
+          if (argv.dates){
+            data = data
+              .map(p => {
+                const fields = Object.keys(p).filter(p => p.endsWith('_at'))
+                if (fields.length > 0){
+                  fields.forEach(
+                    f => {
+                      p[f] = new Date(p[f]).toLocaleString()
+                    }
+                  )
+
+                  return p
+                }
+              })
+          }
+
           if (argv.json){
             console.log(data)
           } else {
-            console.table(data)
+            printTable(data.map(flatten))
           }
         }
       }, argv)

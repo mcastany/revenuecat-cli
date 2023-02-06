@@ -22,6 +22,6 @@ exports.desc = ''
 exports.builder = builder
 
 exports.handler = withContext(builder, async function ({ sdk, projectId, log }, argv) {
-  const products = await sdk.listPackages({limit: '20', project_id: projectId, offering_id: argv.offering_id})
-  log(products.data.items)
+  const { data } = await sdk.listPackages({limit: '20', project_id: projectId, offering_id: argv.offering_id})
+  log(data.items)
 })

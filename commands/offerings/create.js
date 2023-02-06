@@ -32,9 +32,9 @@ exports.handler = withContext(builder, async function ({ sdk, projectId, log }, 
     display_name: argv.display_name,
   }
   
-  const product = await sdk.createOffering(payload, {
+  const { data } = await sdk.createOffering(payload, {
     project_id: projectId
   })
 
-  log([product.data])
+  log([data])
 })
