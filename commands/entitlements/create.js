@@ -26,12 +26,12 @@ exports.desc = 'Create an entitlement'
 exports.builder = builder
 
 exports.handler = withContext(builder, async function ({ sdk, projectId, log }, argv) {
-  const product = await sdk.createEntitlement({
+  const { data } = await sdk.createEntitlement({
     lookup_key: argv.lookup_key, 
     display_name: argv.display_name
   }, {
     project_id: projectId 
   })
 
-  log([product.data])    
+  log([data])    
 })

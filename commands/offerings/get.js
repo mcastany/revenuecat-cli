@@ -1,26 +1,10 @@
 const { withContext } = require('../../utils')
-const builder = {
-  'offering_id': {
-    alias: 'eid',
-    type: 'string',
-    describe: 'Offerings identifier',
-    question: {
-      type: 'list',
-      name: 'offering_id',
-      message: 'What\'s the RC Offerings?',
-      getChoices: async (sdk, projectId ) => {
-        const { data} = await sdk.listOfferings({limit: '20', project_id: projectId })
-        return data.items.map(o => { return { value: o.id, name: o.lookup_key } })
-      }
-    } 
-  }
-}
 
-exports.command = 'get [args]'
+exports.command = 'get [id]'
 exports.desc = 'Get a single offering'
-exports.builder = builder
+exports.builder = {}
 
-exports.handler = withContext(builder, async function({ sdk, projectId, log}, argv) {
-  const { data } = await sdk.getOffering({offering_id: argv.offering_id, project_id: projectId})
+exports.handler = withContext(['id'], {}, async function({ sdk, projectId, log}, argv) {
+  const { data } = await sdk.getOffering({offering_id: argv.id, project_id: projectId})
   log([data])
 })

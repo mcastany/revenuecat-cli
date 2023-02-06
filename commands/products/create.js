@@ -37,7 +37,7 @@ exports.desc = 'Create a product'
 exports.builder = builder
 
 exports.handler = withContext(builder, async function ({ sdk, projectId, log}, argv) {
-  const product = await sdk.createProduct({
+  const { data } = await sdk.createProduct({
     app_id: argv.app_id, 
     store_identifier: argv.store_identifier,
     type: argv.type
@@ -45,5 +45,5 @@ exports.handler = withContext(builder, async function ({ sdk, projectId, log}, a
     project_id: projectId 
   })
 
-  log([product.data])    
+  log([data])    
 })
