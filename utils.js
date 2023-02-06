@@ -57,8 +57,6 @@ function withContext(builder, fn) {
       }))
       
       answers = await inquirer.prompt(questions)  
-
-      console.log('answers', answers)
     }
 
     _.merge(argv, answers)
