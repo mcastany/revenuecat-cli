@@ -38,11 +38,16 @@ exports.desc = ''
 exports.builder = builder
 
 exports.handler = withContext(builder, async function ({ sdk, projectId}, argv) {
+  if (argv.product_ids.length === 0){
+    console.log('select at least one product to attach to the entitlement')
+    return
+  }
+
   await sdk.attachProductsToEntitlement({
-    product_ids: argv.product_ids
-  },{
-    project_id: projectId,
+    product_ids: argv.product_ids,
     entitlement_id: argv.entitlement_id
+  },{
+    project_id: projectId
   })
 
   console.table(`successfully attached ${argv.product_ids.length} products`)

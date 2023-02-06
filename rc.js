@@ -1,5 +1,7 @@
 const { getSettingsContent } = require('./utils')
-const sdk = require('api')('@rcv2/v2.0#wt5e3a5lddfetqe')
+// const sdk = require('api')('@rcv2/v2.0#wt5e3a5lddfetqe')
+const sdk = require('api')('@rcdev/v1.0#hf33ldocnids')
+
 
 class RC {
   constructor() {

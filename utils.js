@@ -57,15 +57,20 @@ function withContext(builder, fn) {
       }))
       
       answers = await inquirer.prompt(questions)  
+
+      console.log('answers', answers)
     }
 
     _.merge(argv, answers)
-
-    return await fn({ 
-      sdk: instance.sdk,
-      profile: instance.profile,
-      projectId: instance.projectId
-    }, argv)
+    try{
+      await fn({ 
+        sdk: instance.sdk,
+        profile: instance.profile,
+        projectId: instance.projectId
+      }, argv)
+    } catch(e){
+      console.log(e.data || e.message || e)
+    }
   }
 }
 

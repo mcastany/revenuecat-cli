@@ -26,7 +26,7 @@ module.exports = {
     question: {
       type: 'input',
       name: 'profile',
-      message: 'Define a Friendly Name for your key'
+      message: 'Profile Name?',
     } 
   },
   default: {
@@ -39,14 +39,16 @@ module.exports = {
       message: 'Do you want to set this as the default profile?'
     } 
   },
-  hostname: {
+  server: {
+    alias: 's',
     type: 'string',
     describe: 'Base URL to use',
     question: {
-      type: 'string',
+      type: 'list',
       name: 'hostname',
+      message: 'Change the base URL if you want to use something different?',
       default: 'https://api.revenuecat.com/v2',
-      message: 'Change the base URL if you want to use something different?'
+      choices: [ 'https://api.revenuecat.com/v2', 'https://api-staging.revenuecat.com/v2', 'https://api-test.revenuecat.com/v2', 'http://localhost:8000/v2', 'http://localhost/v2' ]
     } 
   },
 }
