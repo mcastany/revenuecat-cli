@@ -12,36 +12,36 @@ figlet('RevenueCat', {
     return
   }
 
-  console.log(data)
-  console.log(`%c
-                 /\\_/\\  (
-                ( ^.^ ) _)
-                  \\"/  (
-                ( | | )
-                (__d b__)
-  `,  'font-family: monospace')
+  
+  const parsedArgs = Yargs
+    .help(false)
+    .parse()
+
+  if (parsedArgs.help){
+    console.log(data)
+    console.log(`%c
+                    /\\_/\\  (
+                  ( ^.^ ) _)
+                    \\"/  (
+                  ( | | )
+                  (__d b__)
+    `,  'font-family: monospace')
+  }
 
   Yargs
     .scriptName('revenuecat')
     .usage('$0 <entity> <command> [args]')
-    .option('p', {
-      alias: 'profile',
-      global: true,
-      description: 'When multiple accounts configured, define which one to use'
-    })
-    .option('json', {
-      global: true,
-      description: 'Print lists as JSON instead of table'
-    })
-    .option('dates', {
-      global: true,
-      description: 'Transform dates into readable dates'
-    })
+    .option('p', require('../options/global_profile'))
+    .option('table', require('../options/table'))
+    .option('dates', require('../options/dates'))
     .command('configure', 'Configure API keys', (yargs) => {
       return yargs.commandDir('../commands/configure')
     })
-    .command('dashboard', 'Configure API keys', (yargs) => {
+    .command('dashboard', 'Open dashboard', (yargs) => {
       return yargs.commandDir('../commands/dashboard')
+    })
+    .command('metrics', 'Show metrics', (yargs) => {
+      return yargs.commandDir('../commands/metrics')
     })
     .command('customers', 'Manage customers', (yargs) => {
       return yargs.commandDir('../commands/customers')
@@ -66,12 +66,22 @@ figlet('RevenueCat', {
       handler() {
         // Something for getting started
         // check if there is a configuration, if not, just tell them to configure the SDK
+        console.log(data)
+        console.log(`%c
+                        /\\_/\\  (
+                      ( ^.^ ) _)
+                        \\"/  (
+                      ( | | )
+                      (__d b__)
+        `,  'font-family: monospace')
+
         Yargs.showHelp()
       }
     })
     .demandCommand()
     .strictCommands()
     .help(true)
+    .epilogue('for more information, go to http://revenuecat.com')
     .argv
 })
 

@@ -106,7 +106,7 @@ function withContext(positional, builder, fn) {
               })
           }
 
-          if (argv.json){
+          if (!argv.table){
             console.log(util.inspect(data, {showHidden: false, depth: null, colors: true}))
           } else {
             printTable(data.map(flatten))

@@ -1,7 +1,7 @@
 const { withContext } = require('../../utils')
 
 exports.command = 'get [id]'
-exports.desc = 'Get a customer'
+exports.desc = 'Get a single customer by id'
 exports.builder = {}
 
 exports.handler = withContext(['id'], {}, async function({ sdk, projectId, log}, argv) {
